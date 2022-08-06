@@ -1,0 +1,323 @@
+/* Stary Global Variables */
+:root{
+    --main-color: #2196f3;
+    --background: #ddd;
+    --inner-background: white;
+}
+/* End Global Variables */
+/* Start Global Rules */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+ul{
+    list-style: none;
+}
+.game{
+    background-color: var(--background);
+    height: 100vh;
+}
+.darkmode{
+    --background: #181818;
+    --inner-background: #2f2f2f;
+    color: white;
+    --tooltip-background: rgba(232, 232, 232, 0.8);
+    --tooltip-color: #181818;
+}
+/* End Global Rules */ 
+/* Start Header */
+.header{
+    background-color: var(--main-color);
+    color: white;
+    padding: 10px;
+}
+.header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1100px;
+    margin: auto;
+}
+.container .title{
+    font-size: 25px;
+    font-weight: bold;
+}
+.container .options{
+    width: 400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.container .options .menu{
+    display: flex;
+    flex-direction: row-reverse;
+}
+/* Start Dark Mode Btn */
+.toggle{
+    position: relative;
+    border-radius: 50%;
+    opacity: 0.9;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+    background: 0;
+    border: 0;
+    margin-right: 60px;
+}
+.toggle:hover,
+.toggle:focus{
+    background-color: rgb(0, 0, 0, 0.15);
+    outline: 0;
+}
+.toggle::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(98, 98, 98, 0.2);
+    border-radius: inherit;
+    transform: scale(0);
+    opacity: 0;
+    z-index: -1;
+}
+.pulsing::before{
+    animation: pulse 200ms ease-out;
+}
+.toggle::after{
+    content: attr(aria-label);
+    position: absolute;
+    color: var(--tooltip-color);
+    background-color: var(--tooltip-background);
+    border-radius: 3px;
+    width: max-content;
+    font-size: 12px;
+    padding: 5px 10px;
+    left: calc(-50% + -5px);
+    bottom: -21px;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0s linear 100ms, opacity 100ms linear;
+    transform-origin: top;
+}
+.toggle:hover::after,
+.toggle:focus-visible::after{
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 70ms linear, opacity 70ms linear;
+}
+.toggle circle{
+    transform: translateX(-17%);
+    transition: transform 500ms ease-out;
+    fill: white;
+}
+.darkmode .toggle circle{
+    transform: translateX(0);
+}
+.toggle-sun{
+    transition: transform 750ms cubic-bezier(0.11, 0.25, 0, 1.29);
+    transform-origin: center;
+    fill: white;
+}
+.darkmode .toggle-sun{
+    transform: rotate(0.5turn);
+}
+
+@keyframes pulse {
+    0% {
+    transform: scale(0);
+    opacity: 0.5;
+    }
+    /* 50% {
+        transform: scale(0.5);
+    }
+    75% {
+        opacity: 1;
+    } */
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/* End Dark Mode Button*/
+.container .options .menu .toggle-bar{
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 8px;
+    border-radius: 6px;
+}
+.options .menu .toggle-bar span{
+    width: 100%;
+    height: 5px;
+    background-color: #777;
+    transition: 0.3s;
+}
+.options .menu .toggle-bar:hover span{
+    background-color: #333;
+}
+.options .menu .nav{
+    position: fixed;
+    z-index: 999;
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateY(-100%);
+}
+.options .menu .open{
+    transform: translateY(0);
+}
+.options .menu .nav .close{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: white;
+    border: 2px solid white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    border-radius: 50%;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.options .menu .nav .close:hover {
+    color: indianred;
+    border-color: indianred;
+}
+.options .menu .nav a{
+    color: #eee;
+    text-decoration: none;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 80px;
+    transition: 0.5s;
+}
+.options .menu .nav a:hover {
+    background-color: rgb(0 0 0 / 50%);
+}
+/* End Header */
+/* Start Contenet */
+.container{
+    width: 900px;
+    margin: auto;
+}
+.container .description{
+    margin: 15px 0px;
+    background-color: var(--inner-background);
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 18px;
+}
+.container .description span{
+    color: #009688;
+    font-weight: bold;
+}
+.container .description span::before{
+    content: "[ ";
+}
+.container .description span::after{
+    content: " ]";
+}
+.container .start{
+    background-color: #009688;
+    color: white;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 15px 0px;
+    text-align: center;
+    border-radius: 6px;
+}
+.container .the-word{
+    text-align: center;
+    font-size: 50px;
+    color: var(--main-color);
+    font-weight: bold;
+    user-select: none;
+}
+.container .input{
+    width: 100%;
+    padding: 15px;
+    margin: 15px 0px;
+    border: 3px solid var(--main-color);
+    border-radius: 6px;
+    text-transform: capitalize;
+    text-align: center;
+    caret-color: var(--main-color);
+    font-size: 18px;
+}
+.container .input:focus{
+    outline: none;
+}
+.container .upcoming-words{
+    margin: 15px 0px;
+    padding: 10px;
+    background-color: var(--inner-background);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.container .upcoming-words div{
+    background-color: var(--main-color);
+    color: white;
+    margin: 4px;
+    padding: 10px;
+    border-radius: 6px;
+}
+.container .controls{
+    background-color: var(--inner-background);
+    margin: 15px 0px 5;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+}
+.container .controls span{
+    font-weight: bold;
+    color: #009688;
+}
+.container .finish{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+
+}
+.container .finish .res{
+    background-color: #009688;
+    display: block;
+    width: fit-content;
+    padding: 5px 15px;
+    color: white;
+    border-radius: 6px;
+    border: 3px solid;
+    margin: 15px auto 0px;
+    cursor: pointer;
+}
+.lost{
+    color: red;
+}
+.win {
+    color: var(--main-color);
+}
+/* End Contenet */
