@@ -38,7 +38,7 @@ timeLeftSpan.innerHTML = defaultLevelSeconds;
 scoreTotal.innerHTML = words.length;
 
 //Disable Pasting
-input.onpaste = () => true;
+input.onpaste = () => false;
 
 
 startButton.onclick = function (){
